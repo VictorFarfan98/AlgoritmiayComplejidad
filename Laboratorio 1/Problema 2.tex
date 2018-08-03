@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{algorithm2e}
+\begin{document}
+
+\title{Problema \#2}
+\author{Victor Farfan}
+\maketitle
+	\begin{algorithm}[H]
+	\KwIn{matriz A (n x m) y matriz B (m x p)}
+	\KwOut {matriz C (n x p)}
+	\For {i from 1 to n}{
+		\For{j from 1 to p:}{
+			sum = 0\\
+			\For{k from 1 to m:}{
+				sum = sum + A[i][k] * B[k][j]
+			}
+			C[i][j] = sum
+		}
+	}
+	\KwRet {C}\newline
+	\end{algorithm}
+	
+\newenvironment{answer}
+\begin{answer}
+	
+El running time de este algoritmo depende de los tamaños n,m y p de las matrices. Por cada recorrido en el ciclo de "n" se hace un ciclo entero de 1 a p. Por cada recorrido en el ciclo de "p" se hace un ciclo enter de 1 a m. Por lo que el tiempo de ejecución sería O(n*m*p). Si las matrices tienen las mismas dimensiones el tiempo de ejecucición es \begin{math} O(n^{3}) \end{math}
+
+\end{document}

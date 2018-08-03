@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage{algorithm2e}
+\begin{document}
+
+\title{Problema \#3}
+\author{Victor Farfan}
+\maketitle
+	\begin{algorithm}[H]
+	\KwIn{Array of Integers: S}
+	\KwOut {Sorted array: S}
+	\For {i from 1 to length(S)-1}{
+		\For{j from 1 to length(S)}{
+			\If{ S[i] $>$ S[j]}{
+				swap S[i] and S[j]
+			}
+		}
+	}
+	\KwRet {S}\newline
+	\end{algorithm}\textsl{}
+
+\newenvironment{answer}
+\begin{answer}
+El peor tiempo de ejecución posible del algoritmo Bubble Sort es \begin{math}(n^2) \end{math}.\\ 
+
+El algoritmo insertion sort tiene una complejidad de \begin{math}O(n^2)
+\end{math} en el peor de los casos y de \begin{math} O(n)
+\end{math} en el mejor de los casos.\\
+
+Si comparamos estos dos algoritmos, ambos tienen la misma complejidad en el peor de los casos, aunque en el mejor de los casos insertion sort es más rápido.
+
+\end{document}

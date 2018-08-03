@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage{algorithm2e}
+\begin{document}
+
+\title{Problema \#1}
+\author{Victor Farfan}
+\maketitle
+	\begin{algorithm}[H]
+		\KwIn{arreglo "n" y valor a buscar "search"}
+		\KwOut{indice "i"}
+		\For {i from 1 to length(n)}{
+			\uIf{n[i] == search}{
+				\KwRet {i} 
+			}
+		}
+		\KwRet {null}
+	\end{algorithm}
+		
+\newenvironment{answer}
+\begin{answer}
+El loop invariant en este algoritmo es la variable "search" la cual contiene el valor que queremos buscar en el arreglo.
+
+\end{document}
