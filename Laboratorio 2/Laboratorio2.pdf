@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage{algorithm2e}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{setspace}
+
+\definecolor{Code}{rgb}{0,0,0}
+\definecolor{Decorators}{rgb}{0.5,0.5,0.5}
+\definecolor{Numbers}{rgb}{0.5,0,0}
+\definecolor{MatchingBrackets}{rgb}{0.25,0.5,0.5}
+\definecolor{Keywords}{rgb}{0,0,1}
+\definecolor{self}{rgb}{0,0,0}
+\definecolor{Strings}{rgb}{0,0.63,0}
+\definecolor{Comments}{rgb}{0,0.63,1}
+\definecolor{Backquotes}{rgb}{0,0,0}
+\definecolor{Classname}{rgb}{0,0,0}
+\definecolor{FunctionName}{rgb}{0,0,0}
+\definecolor{Operators}{rgb}{0,0,0}
+\definecolor{Background}{rgb}{0.98,0.98,0.98}
+\lstdefinelanguage{Python}{
+	numbers=left,
+	numberstyle=\footnotesize,
+	numbersep=1em,
+	xleftmargin=1em,
+	framextopmargin=2em,
+	framexbottommargin=2em,
+	showspaces=false,
+	showtabs=false,
+	showstringspaces=false,
+	frame=l,
+	tabsize=4,
+	% Basic
+	basicstyle=\ttfamily\small\setstretch{1},
+	backgroundcolor=\color{Background},
+	% Comments
+	commentstyle=\color{Comments}\slshape,
+	% Strings
+	stringstyle=\color{Strings},
+	morecomment=[s][\color{Strings}]{"""}{"""},
+	morecomment=[s][\color{Strings}]{'''}{'''},
+	% keywords
+	morekeywords={import,from,class,def,for,while,if,is,in,elif,else,not,and,or,print,break,continue,return,True,False,None,access,as,,del,except,exec,finally,global,import,lambda,pass,print,raise,try,assert},
+	keywordstyle={\color{Keywords}\bfseries},
+	% additional keywords
+	morekeywords={[2]@invariant,pylab,numpy,np,scipy},
+	keywordstyle={[2]\color{Decorators}\slshape},
+	emph={self},
+	emphstyle={\color{self}\slshape},
+	%
+}
+\linespread{1.3}
+
+\newenvironment{answer}[0]{}
+
+\newenvironment{changemargin}[2]{%
+	\begin{list}{}{%
+			\setlength{\topsep}{0pt}%
+			\setlength{\leftmargin}{#1}%
+			\setlength{\rightmargin}{#2}%
+			\setlength{\listparindent}{\parindent}%
+			\setlength{\itemindent}{\parindent}%
+			\setlength{\parsep}{\parskip}%
+		}%
+		\item[]}{\end{list}}
+	
+\title{Laboratorio \#2}
+\author{Victor Farfan}
+
+	
+\begin{document}
+	\maketitle	
+	\section{Problema \#1}
+	
+	\begin{answer}
+		Al correr este algoritmo de Heapsort para ordenar un arreglo de 15 elementos, podemos contar un total de 47 iteraciones ,o llamadas, a la función \textit{siftDown} la cual revisa si es necesario hacer un swap entre nodos o no. Y con el input dado de \textit{arreglo=[3, 39, 61, 91, 57, 22, 75, 89, 9, 90, 63, 78, 28, 73, 20]} hay un total de 26 swaps para que quede ordenado de manera descendente.
+	\end{answer}
+	\newpage
+	\begin{changemargin}{-2.5cm}{-1cm}
+		\lstinputlisting[language=Python]{Heapsort.py}
+	\end{changemargin}
+	
+	\newpage
+	\section{Problema \#2}
+	\begin{changemargin}{-2.5cm}{-1cm}
+		\lstinputlisting[language=Python]{Problema2.py}
+	\end{changemargin}
+	\begin{answer}
+		En este algoritmo el único ciclo está dentro de la función \textit{solve} y es linear porque recorremos la mitad del arreglo. En el peor de los casos recorremos la mitad completa. En el mejor de los casos desde el primer nodo que revisamos sabemos que no es un max heap y el break se ejecuta. Por lo que en el peor de los casos el algoritmo corre en tiempo \begin{math} O(n/2) \end{math}, lo que es lo mismo que decir que corre en tiempo \begin{math} O(n) \end{math}. En el mejor de los casos solo una iteración del ciclo es realizada por lo que inmediatamente sabemos que no es un max heap y se ejecuta el break, sabiendo esto en el mejor de los casos el algoritmo corre en tiempo \begin{math} O(1) \end{math}.
+	\end{answer}
+	
+	\newpage
+	\section{Problema \#3}
+	\begin{changemargin}{-2.5cm}{-1cm}
+		\lstinputlisting[language=Python]{Problema3.py}
+	\end{changemargin}
+	\begin{answer}
+		La función \textit{siftDown} es la función que hemos convertido de una recursiva a usar un loop. 
+	\end{answer}
+	
+
+\end{document}
