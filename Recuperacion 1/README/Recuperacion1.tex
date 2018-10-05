@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage{algorithm2e}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{setspace}
+
+\definecolor{Code}{rgb}{0,0,0}
+\definecolor{Decorators}{rgb}{0.5,0.5,0.5}
+\definecolor{Numbers}{rgb}{0.5,0,0}
+\definecolor{MatchingBrackets}{rgb}{0.25,0.5,0.5}
+\definecolor{Keywords}{rgb}{0,0,1}
+\definecolor{self}{rgb}{0,0,0}
+\definecolor{Strings}{rgb}{0,0.63,0}
+\definecolor{Comments}{rgb}{0,0.63,1}
+\definecolor{Backquotes}{rgb}{0,0,0}
+\definecolor{Classname}{rgb}{0,0,0}
+\definecolor{FunctionName}{rgb}{0,0,0}
+\definecolor{Operators}{rgb}{0,0,0}
+\definecolor{Background}{rgb}{0.98,0.98,0.98}
+\lstdefinelanguage{Python}{
+	numbers=left,
+	numberstyle=\footnotesize,
+	numbersep=1em,
+	xleftmargin=1em,
+	framextopmargin=2em,
+	framexbottommargin=2em,
+	showspaces=false,
+	showtabs=false,
+	showstringspaces=false,
+	frame=l,
+	tabsize=4,
+	% Basic
+	basicstyle=\ttfamily\small\setstretch{1},
+	backgroundcolor=\color{Background},
+	% Comments
+	commentstyle=\color{Comments}\slshape,
+	% Strings
+	stringstyle=\color{Strings},
+	morecomment=[s][\color{Strings}]{"""}{"""},
+	morecomment=[s][\color{Strings}]{'''}{'''},
+	% keywords
+	morekeywords={import,from,class,def,for,while,if,is,in,elif,else,not,and,or,print,break,continue,return,True,False,None,access,as,,del,except,exec,finally,global,import,lambda,pass,print,raise,try,assert},
+	keywordstyle={\color{Keywords}\bfseries},
+	% additional keywords
+	morekeywords={[2]@invariant,pylab,numpy,np,scipy},
+	keywordstyle={[2]\color{Decorators}\slshape},
+	emph={self},
+	emphstyle={\color{self}\slshape},
+	%
+}
+\linespread{1.3}
+
+\newenvironment{answer}[0]{}
+
+\newenvironment{changemargin}[2]{%
+	\begin{list}{}{%
+			\setlength{\topsep}{0pt}%
+			\setlength{\leftmargin}{#1}%
+			\setlength{\rightmargin}{#2}%
+			\setlength{\listparindent}{\parindent}%
+			\setlength{\itemindent}{\parindent}%
+			\setlength{\parsep}{\parskip}%
+		}%
+		\item[]}{\end{list}}
+	
+\title{Mergesort usando computación distribuida}
+\author{Victor Farfan}
+
+	
+\begin{document}
+	\maketitle	
+	\newpage
+	\section{Readme\textsl{}}
+		{\it mergesort{\_}input.txt} es el archivo donde van las oraciones que queremos ordenar.\\
+		{\it save.txt} es el archivo donde se van a guardar las oraciones ya ordenadas.\\
+		
+		\begin{itemize}
+			\item Descargar los archivos que se encuentran en el repositorio en la carpeta Recuperacion1 y entrar a la carpeta Code
+			\item Hacer build de la imagen de docker con el comando \it docker build -t \textless tag propio \textgreater .
+			\item Levantar el contenedor recien creado con el comando docker run -it \$(pwd):/code \textless tag propio \textgreater  jug execute jugfile.py
+		\end{itemize}
+		Podemos estar seguros del resultado al ver que se imprime en consola la lista de oraciones ordenada. Esta impresion se hace leyendo el archivo despues de haberle escrito encima e imprimiendo cada linea de su contenido. 
+		Nuestra otra opcion para comprobar que se escribio la data correcta en el archivo es levantar el contenedor con el comando {\it docker run -it \$(pwd):/code \textless tag propio \textgreater  sh}. Con esto entramos a la terminal dentro del contenedor. Estando en la carpeta "code" ejecutamos {\it cat save.txt} para verificar el contenido del archivo en donde se guardaron las oraciones ya ordenadas. 
+	\begin{answer}
+		
+	\end{answer}
+	
+
+	
+	
+	
+
+\end{document}
