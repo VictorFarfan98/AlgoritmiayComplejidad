@@ -1,0 +1,114 @@
+\documentclass{article}
+\usepackage{algorithm2e}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{setspace}
+
+\definecolor{Code}{rgb}{0,0,0}
+\definecolor{Decorators}{rgb}{0.5,0.5,0.5}
+\definecolor{Numbers}{rgb}{0.5,0,0}
+\definecolor{MatchingBrackets}{rgb}{0.25,0.5,0.5}
+\definecolor{Keywords}{rgb}{0,0,1}
+\definecolor{self}{rgb}{0,0,0}
+\definecolor{Strings}{rgb}{0,0.63,0}
+\definecolor{Comments}{rgb}{0,0.63,1}
+\definecolor{Backquotes}{rgb}{0,0,0}
+\definecolor{Classname}{rgb}{0,0,0}
+\definecolor{FunctionName}{rgb}{0,0,0}
+\definecolor{Operators}{rgb}{0,0,0}
+\definecolor{Background}{rgb}{0.98,0.98,0.98}
+\lstdefinelanguage{Python}{
+	numbers=left,
+	numberstyle=\footnotesize,
+	numbersep=1em,
+	xleftmargin=1em,
+	framextopmargin=2em,
+	framexbottommargin=2em,
+	showspaces=false,
+	showtabs=false,
+	showstringspaces=false,
+	frame=l,
+	tabsize=4,
+	% Basic
+	basicstyle=\ttfamily\small\setstretch{1},
+	backgroundcolor=\color{Background},
+	% Comments
+	commentstyle=\color{Comments}\slshape,
+	% Strings
+	stringstyle=\color{Strings},
+	morecomment=[s][\color{Strings}]{"""}{"""},
+	morecomment=[s][\color{Strings}]{'''}{'''},
+	% keywords
+	morekeywords={import,from,class,def,for,while,if,is,in,elif,else,not,and,or,print,break,continue,return,True,False,None,access,as,,del,except,exec,finally,global,import,lambda,pass,print,raise,try,assert},
+	keywordstyle={\color{Keywords}\bfseries},
+	% additional keywords
+	morekeywords={[2]@invariant,pylab,numpy,np,scipy},
+	keywordstyle={[2]\color{Decorators}\slshape},
+	emph={self},
+	emphstyle={\color{self}\slshape},
+	%
+}
+\linespread{1.3}
+
+\newenvironment{answer}[0]{}
+
+\newenvironment{changemargin}[2]{%
+	\begin{list}{}{%
+			\setlength{\topsep}{0pt}%
+			\setlength{\leftmargin}{#1}%
+			\setlength{\rightmargin}{#2}%
+			\setlength{\listparindent}{\parindent}%
+			\setlength{\itemindent}{\parindent}%
+			\setlength{\parsep}{\parskip}%
+		}%
+		\item[]}{\end{list}}
+	
+\title{Laboratorio \#7}
+\author{Victor Farfan}
+
+	
+\begin{document}
+	\maketitle	
+	\newpage
+	\section{Método de Conteo}
+		\subsection{Inciso \#1}
+			\begin{answer}		
+				Sabemos que el costo original de hacer POP() o PUSH() en un Stack es O(1). Asemejemos este O(1) con un \$1, por lo que cada PUSH() y POP() nos cuesta \$1. Lo que haremos será "cobrar" \$2 por cada PUSH(). Ahora cada elemento dentro del arreglo tiene \$1 guardado como "crédito", la diferencia entre los \$2 que cobramos y el \$1 que pagamos, que usaremos cada vez que querramos hacer POP(). Ese \$1 de credito no solo lo usaremos al llamar a POP(), sino que también lo podemos usar cuando hagamos un backup del Stack. Como copiar también tiene un costo de O(1)=\$1, la operacion Backup la pagamos con el credito que ya teniamos. Como cada elemento nunca tendrá menos de \$1 de "credito". El tiempo de ejecución es O(n), siendo n el número de veces que llamamos a PUSH(). No tomamos en cuenta las operaciones de POP() o el Backup porque esas operaciones nos salen "gratis" al cobrar extra en el PUSH(). 
+			\end{answer}
+		\subsection{Inciso \#2}
+			\begin{answer}
+				\begin{changemargin}{-2.5cm}{-1cm}
+					\lstinputlisting[language=Python]{Inciso2.py}
+					En este algoritmo tenemos 2 Stacks. Al llamar Enqueue() solo hacemos PUSH() a uno de los 2 Stacks. Esto tiene un costo de O(1). Ahora al llamar Dequeue(), todo el contenido del Stack que estamos usando se traslada al otro Stack usando POP(), para que ahora el orden sea invertido y podamos llamar a POP() para tener el primer elemente al que le hicimos Enqueue(). Como estamos usando costos amortizados, cobramos extra por cada Enqueue(), para que Dequeue() nos salga "gratis". Con esto hacer n operaciones nos cuesta O(n), por lo que cada operacion por separado tiene un costo de O(1).
+				\end{changemargin}
+			\end{answer}
+	
+	\newpage
+	\section{Método potencial}
+	\subsection{Inciso \#1}
+		\begin{answer}
+			Hacer PUSH() al Stack tendrá una función potencial de $\phi$(Ti) = (s+1) por lo que $\phi$(Ti-1) = s. La diferencia seria: \\
+				$\phi$(Ti) - $\phi$(Ti-1) = (s + 1) - s\\
+			Por lo que el costo de la operación seria 1 + 1. Porque el costo original de cada PUSH() es = 1.
+			Hacer Backup() solo sería copiar el arreglo entero por lo que igual tendra un costo constante. POP() tendría un costo de 0, lo cual también es constante. Como todas las operaciones tienen un costo constante, hacer n operaciones tendría un costo de O(n).
+		\end{answer}
+	\subsection{Inciso \#2}
+		\begin{answer}
+			Llamar Enqueue() tiene la funcion potencial: \\
+				$\phi$(Ti) = (s + 1). Porque estamos haciendo PUSH() a un Stack.\\
+			Enqueue() tiene un costo final de 1 + 1, porque al igual que en el inciso anterior, estamos haciendo PUSH() a un Stack.\\
+			Para llamar a Dequeue podriamos tener la función potencial: 
+				$\phi$(Ti) = (n -1). Donde n es el numero de elementos en la cola\\
+			Por lo que $\phi$(Ti-1) = n. \\
+			Por lo que el potencial de cada operacion seria: \\
+				$\phi$(Ti) - $\phi$(Ti-1) = (n - 1) - n\\
+				$\phi$ = - 1\\
+			Tanto $\phi$ = 2 como $\phi$ = -1 son numeros constantes por lo que son operaciones O(1).
+			
+			
+		\end{answer}
+	
+	
+	
+
+\end{document}
